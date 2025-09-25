@@ -1,0 +1,99 @@
+:root{
+  --bg1:#071233;
+  --bg2:#13294f;
+  --accent:#e6378c;
+  --glass: rgba(255,255,255,0.06);
+  --muted: rgba(230,240,234,0.75);
+  --card-radius: 18px;
+  --shadow: 0 14px 40px rgba(2,6,23,0.6);
+  --glass-blur: 14px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial;color:#eaf6f3}
+body{
+  display:flex;align-items:center;justify-content:center;
+  padding:28px;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.03), transparent),
+              linear-gradient(135deg,var(--bg1),var(--bg2));
+  overflow:hidden;
+}
+
+.blob{position:fixed;border-radius:50%;filter: blur(60px); opacity:0.12; z-index:0;}
+.blob.a{width:520px;height:520px;left:-120px;top:-80px;background:#ecb255}
+.blob.b{width:420px;height:420px;right:-80px;bottom:-160px;background:#e6378c}
+
+.card{
+  position:relative;z-index:2;width:100%;max-width:920px;
+  border-radius:var(--card-radius);padding:28px;
+  display:flex;gap:28px;align-items:center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  backdrop-filter: blur(var(--glass-blur));
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+@media (max-width:720px){ .card{flex-direction:column;text-align:center;padding:22px} }
+
+.left{flex:1;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+@media (max-width:720px){ .left{align-items:center} }
+
+.logo-wrap{
+  width:220px;height:220px;border-radius:999px;
+  display:flex;align-items:center;justify-content:center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 20px 60px rgba(2,6,23,0.5);
+  overflow:hidden; position:relative;
+}
+
+.logo{
+  width:140px;height:140px;object-fit:contain;display:block;
+  transform-origin:center top;
+  animation: dropIn 900ms cubic-bezier(.2,.9,.3,1) 300ms both;
+}
+
+@keyframes dropIn{
+  0%{ transform: translateY(-260px) rotate(-15deg) scale(0.6); opacity:0 }
+  60%{ transform: translateY(12px) rotate(3deg) scale(1.03); opacity:1 }
+  100%{ transform: translateY(0) rotate(0) scale(1) }
+}
+
+.title{font-size:28px;font-weight:700;margin-top:4px;color:#fff}
+.subtitle{color:var(--muted);font-size:14px;margin-top:4px;max-width:520px}
+
+.right{flex:1;display:flex;flex-direction:column;align-items:flex-end;gap:18px}
+@media (max-width:720px){ .right{align-items:center} }
+
+.soon-badge{
+  font-weight:800;letter-spacing:1px;background:linear-gradient(90deg,var(--accent),#ecb255);
+  padding:10px 18px;border-radius:999px;color:#071233;box-shadow:0 8px 20px rgba(0,0,0,0.35);
+  transform:translateY(-6px); animation: floatBadge 2200ms ease-in-out infinite;
+}
+@keyframes floatBadge{ 0%{transform:translateY(-6px)}50%{transform:translateY(-2px)}100%{transform:translateY(-6px)} }
+
+.message{
+  background:var(--glass);padding:18px;border-radius:12px;max-width:420px;color:var(--muted);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+  transform: translateY(8px); opacity:0; animation: msgIn 800ms ease 600ms forwards;
+}
+@keyframes msgIn{ to { transform:translateY(0); opacity:1 } }
+
+.cta-row{display:flex;gap:12px;align-items:center;justify-content:flex-end}
+@media (max-width:720px){ .cta-row{justify-content:center} }
+
+.btn{
+  padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700;font-size:13px;
+  color:#071233;background:#fff; box-shadow: 0 8px 20px rgba(2,6,23,0.28);
+}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04)}
+
+.foot{font-size:12px;color:var(--muted);margin-top:8px;text-align:right}
+@media (max-width:720px){ .foot{text-align:center} }
+
+.sparkle{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:0.9}
+.sparkle:after{content:"";position:absolute;width:140%;height:140%;left:-20%;top:-30%;background:
+  radial-gradient(circle at 30% 20%, rgba(255,255,255,0.06), transparent 10%),
+  radial-gradient(circle at 70% 80%, rgba(255,255,255,0.03), transparent 10%);animation: rotateSpark 8s linear infinite}
+@keyframes rotateSpark{ from{transform:rotate(0)}to{transform:rotate(360deg)} }
+
+@media (max-width:420px){ .logo-wrap{width:160px;height:160px} .logo{width:110px;height:110px} .title{font-size:22px} }
